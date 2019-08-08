@@ -3,14 +3,15 @@ import React, { Component } from 'react';
 import './App.css';
 // var number = 2000;
 var unirest = require("unirest");
-var apikey=process.env.REACT_APP_API_KEY;
+var apikey = process.env.REACT_APP_API_KEY;
 
 class App extends Component {
   constructor() {
     super()
     this.state = {
-      year: 2019,
-      current: 0,
+      year: 'Enter a year to get started!',
+      current: '',
+      usedYear: '',
       text: "Click the button to generate a random info from that year!",
     }
   }
@@ -23,11 +24,15 @@ class App extends Component {
 
   setYear = event => {
     event.preventDefault();
-    this.setState({
-      year: this.state.current,
-      current: ''
-    })
-    console.log("Successfully added", this.state.current, "to the list!")
+    if (this.state.current > 0 && this.state.current <= 2019) {
+      this.setState({
+        year: this.state.current,
+        current: ''
+      })
+    }
+    else {
+      alert("Please enter a year between 1 and 2019!")
+    }
   }
 
   func = () => {
@@ -49,25 +54,28 @@ class App extends Component {
       console.log("line 33", res.body);
       this.setState({
         text: resText,
-        year: resYear,
+        usedYear: resYear,
       })
     });
   }
   render() {
-    var link = "https://www.google.com/search?q="+this.state.year+" "+this.state.text;
+    var link = "https://www.google.com/search?q=" + this.state.usedYear + " " + this.state.text;
     return (
-      <div>
-        <button onClick={this.func}>Get Info  </button>
-        <div>
-        <form id="addtaskform">
-              <label htmlFor="taskName">Change Year:</label>
-              <input onChange={this.handleChange} id="yearInputBox" name="yearInput" type="text" placeholder="Enter a year." value={this.state.current}></input>
-              <button type="submit" id="setYear"onClick={this.setYear}>Set</button>
+      <div className="container">
+        <div className="content">
+          <div className="yearDisp">
+            <div id='yearText'>{this.state.year}</div>
+            <form id="addtaskform">
+              <input onChange={this.handleChange} id="yearInputBox" name="yearInput" type="number" placeholder="Set the year here" value={this.state.current}></input>
+              <button type="submit" id="setYear" onClick={this.setYear}>Set</button>
             </form>
-          <div className="yearDisp">YEAR: {this.state.year}</div>
-          <div className="factDisplay">INFO: {this.state.text}</div>
+          </div>
+          <div className="outputWindow">
+            <button id='button' onClick={this.func}>Get Info  </button>
+            <div className="factDisplay">INFO: {this.state.text}</div>
+            <a id="learnMoreButton" href={link} rel="noopener noreferrer" target="_blank">Learn More About This</a>
+          </div>
         </div>
-          <a id="learnMoreButton" href={link} rel="noopener noreferrer" target="_blank">Learn More</a>
       </div>
     );
   }
