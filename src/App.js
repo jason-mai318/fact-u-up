@@ -1,11 +1,4 @@
 
-//TODO:
-//ADD STYLING
-//ADD SEARCH WINDOW FOR THE FACT
-//ADD RANDOMIZE YEAR BUTTON
-//ADD YEAR INPUT
-//ADD FACT SEARCH HISTORY [MAYBE]
-
 import React, { Component } from 'react';
 import './App.css';
 // var number = 2000;
@@ -16,9 +9,25 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-      year: 20019,
+      year: 2019,
+      current: 0,
       text: "Click the button to generate a random info from that year!",
     }
+  }
+
+  handleChange = event => {
+    this.setState({
+      current: event.target.value
+    })
+  };
+
+  setYear = event => {
+    event.preventDefault();
+    this.setState({
+      year: this.state.current,
+      current: ''
+    })
+    console.log("Successfully added", this.state.current, "to the list!")
   }
 
   func = () => {
@@ -33,6 +42,7 @@ class App extends Component {
       "x-rapidapi-host": "numbersapi.p.rapidapi.com",
       "x-rapidapi-key": apikey
     });
+
     req.end((res) => {
       resText = res.body.text;
       resYear = res.body.number;
@@ -43,27 +53,21 @@ class App extends Component {
       })
     });
   }
-  // conponentDidMount() {
-  //   (function () {
-  //     var cx = '111:xxx';
-  //     var gcse = document.createElement('script');
-  //     gcse.type = 'text/javascript';
-  //     gcse.async = true;
-  //     gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
-  //     var s = document.getElementsByTagName('script')[0];
-  //     s.parentNode.insertBefore(gcse, s);
-  //   })();
-  // }
   render() {
+    var link = "https://www.google.com/search?q="+this.state.year+" "+this.state.text;
     return (
       <div>
         <button onClick={this.func}>Get Info  </button>
         <div>
+        <form id="addtaskform">
+              <label htmlFor="taskName">Change Year:</label>
+              <input onChange={this.handleChange} id="yearInputBox" name="yearInput" type="text" placeholder="Enter a year." value={this.state.current}></input>
+              <button type="submit" id="setYear"onClick={this.setYear}>Set</button>
+            </form>
           <div className="yearDisp">YEAR: {this.state.year}</div>
           <div className="factDisplay">INFO: {this.state.text}</div>
         </div>
-        {/* <div className="gcse-searchbox" data-resultsUrl="http://www.example.com"
-          data-newWindow="true" data-queryParameterName="search" /> */}
+          <a id="learnMoreButton" href={link} rel="noopener noreferrer" target="_blank">Learn More</a>
       </div>
     );
   }
