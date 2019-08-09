@@ -7,6 +7,16 @@
   background-size: cover;
   justify-content: center;
 }
+.topBar{
+  position: absolute;
+  width: 100%;
+  background-color: rgb(0, 140, 186);
+  color: white;
+  font-size: 4vh;
+  text-align: center;
+  padding: .5vh 0vh;
+  font-family: Georgia, 'Times New Roman', Times, serif
+}
 .content{
   width: 80vw;
   height: 100vh;
@@ -14,17 +24,17 @@
 }
 
 .yearDisp{
-  color:gold;
+  color:white;
   display: flex;
   flex-flow: column;
   justify-content: center;
   align-items: center;
-  margin-top:5vh;
+  margin-top:7vh;
   margin-bottom: 5vh;
 }
 
 #yearText{
-  margin-bottom:3vh;
+  margin-bottom:2vh;
   font-size: 8vmin;
 }
 
@@ -68,7 +78,7 @@
   height:5vh;
   margin-left: 30vw;
   margin-right: 30vw;
-  margin-bottom: 2.5vh;
+  margin-bottom: 2vh;
   display: flex;
   flex-flow: column;
   align-items: center;
@@ -87,6 +97,7 @@
   min-width:12vw;
 }
 #historyListTitle{
+  border-top: .5vh solid black;
   text-align: center;
   color: white;
   margin-bottom: 1vh;
@@ -110,7 +121,7 @@
 .theList{
   width: 60vw;
   margin-left: 10vw;
-  height: 31vh;
+  height: 30vh;
   overflow-x: hidden;
   overflow-y: auto;
 }

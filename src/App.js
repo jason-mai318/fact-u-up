@@ -74,6 +74,7 @@ class App extends Component {
       </span>);
     return (
       <div className="container">
+        <div className="topBar">Fact-U-Up</div>
         <div className="content">
           <div className="yearDisp">
             <div id='yearText'>{this.state.year}</div>
