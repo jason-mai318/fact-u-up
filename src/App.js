@@ -77,7 +77,7 @@ class App extends Component {
         <div className="content">
           <div className="yearDisp">
             <div id='yearText'>{this.state.year}</div>
-            <form id="addtaskform">
+            <form>
               <input onChange={this.handleChange} id="yearInputBox" name="yearInput" type="number" placeholder="Set the year here" value={this.state.current}></input>
               <button type="submit" id="setYear" onClick={this.setYear}>Set</button>
             </form>

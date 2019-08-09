@@ -37,6 +37,18 @@
 }
 #factButton{
   margin-top:2%;
+  background-color: rgb(0, 140, 186);
+  border: none;
+  color: white;
+  padding: 2vh 4vw;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 2.5vmin;
+  cursor: pointer;
+}
+#factButton:hover{
+  background-color: rgb(54, 173, 212);
 }
 #factDisplay{
   margin-top: 2%;
@@ -46,21 +58,26 @@
   text-align: center;
 }
 #mainLearnMoreButton{
-  background-color: rgb(6, 180, 6);
+  background-color: rgb(6, 180, 180);
   color: black;
+  padding-top:2vh;
   text-align: center;
   text-decoration: none;
   align-items: center;
   font-size: 2vmin;
+  height:5vh;
   margin-left: 30vw;
   margin-right: 30vw;
-  margin-bottom: 5vh;
+  margin-bottom: 2.5vh;
   display: flex;
   flex-flow: column;
   align-items: center;
 }
+#mainLearnMoreButton:hover{
+  background-color: rgb(44, 212, 212);
+}
 #learnMoreButton{
-  background-color: rgb(6, 180, 6);
+  background-color: rgb(6, 180, 180);
   color: black;
   text-align: center;
   text-decoration: none;
@@ -72,7 +89,7 @@
 #historyListTitle{
   text-align: center;
   color: white;
-  margin-bottom: 2vh;
+  margin-bottom: 1vh;
 }
 .taskText{
   margin-left: 1vw;
@@ -82,7 +99,8 @@
   min-height: 5vh;
   width: 100%;
   border: .1vh solid black;
-  background: rgb(255, 155, 0);
+  background: rgb(79, 100, 196);
+  color: black;
   display: flex;
   justify-content: left;
   float: left;
