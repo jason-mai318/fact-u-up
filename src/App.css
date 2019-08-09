@@ -10,11 +10,11 @@
 .content{
   width: 80vw;
   height: 100vh;
-  background-color: rgba(240, 255, 255, 0.1250)
+  background-color: rgba(0, 0, 0, 0.5)
 }
 
 .yearDisp{
-
+  color:gold;
   display: flex;
   flex-flow: column;
   justify-content: center;
@@ -30,20 +30,69 @@
 
 .outputWindow{
   border-top: .5vh solid black;
-  height: 40vh;
+  height: 28vh;
   display: flex;
   flex-flow: column;
-  /* justify-content: center; */
   align-items: center;
 }
-
-#learnMoreButton{
-  margin-left: 1%;
+#factButton{
+  margin-top:2%;
+}
+#factDisplay{
+  margin-top: 2%;
+  color: white;
+  font-size: 4vmin;
+  width: 70vw;
+  text-align: center;
+}
+#mainLearnMoreButton{
   background-color: rgb(6, 180, 6);
   color: black;
-  padding: 1% 1%;
+  text-align: center;
+  text-decoration: none;
+  align-items: center;
+  font-size: 2vmin;
+  margin-left: 30vw;
+  margin-right: 30vw;
+  margin-bottom: 5vh;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+#learnMoreButton{
+  background-color: rgb(6, 180, 6);
+  color: black;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  border-radius: 10%;
+  font-size: 2vmin;
+  word-wrap: break-word;
+  min-width:12vw;
+}
+#historyListTitle{
+  text-align: center;
+  color: white;
+  margin-bottom: 2vh;
+}
+.taskText{
+  margin-left: 1vw;
+}
+.listItem{
+  margin-top: 0.5vh;
+  min-height: 5vh;
+  width: 100%;
+  border: .1vh solid black;
+  background: rgb(255, 155, 0);
+  display: flex;
+  justify-content: left;
+  float: left;
+  border-radius: 3vw;
+  overflow: auto;
+}
+.theList{
+  width: 60vw;
+  margin-left: 10vw;
+  height: 31vh;
+  overflow-x: hidden;
+  overflow-y: auto;
 }

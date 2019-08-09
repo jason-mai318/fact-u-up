@@ -1,9 +1,8 @@
 
 import React, { Component } from 'react';
 import './App.css';
-// var number = 2000;
 var unirest = require("unirest");
-var apikey = process.env.REACT_APP_API_KEY;
+const apikey = process.env.REACT_APP_API_KEY;
 
 class App extends Component {
   constructor() {
@@ -13,6 +12,8 @@ class App extends Component {
       current: '',
       usedYear: '',
       text: "Click the button to generate a random info from that year!",
+      learnButtonVisible: 'hidden',
+      history:[],
     }
   }
 
@@ -27,7 +28,7 @@ class App extends Component {
     if (this.state.current > 0 && this.state.current <= 2019) {
       this.setState({
         year: this.state.current,
-        current: ''
+        current: '',
       })
     }
     else {
@@ -51,15 +52,26 @@ class App extends Component {
     req.end((res) => {
       resText = res.body.text;
       resYear = res.body.number;
-      console.log("line 33", res.body);
+      if(this.state.text!=="Click the button to generate a random info from that year!"){
+        this.setState({
+          history: [...this.state.history, this.state.usedYear+", "+this.state.text],
+        })
+      }
       this.setState({
         text: resText,
         usedYear: resYear,
+        learnButtonVisible: 'visible',
       })
     });
+    console.log("line 33", this.state.history);
   }
   render() {
     var link = "https://www.google.com/search?q=" + this.state.usedYear + " " + this.state.text;
+    const theHistory = this.state.history.map((items, index) => 
+      <span key={index} className="listItem">
+        <a id="learnMoreButton" href={"https://www.google.com/search?q="+ items} rel="noopener noreferrer" target="_blank">Learn More</a>
+        <span className="taskText"><b>{index+1}: </b>{items}</span>
+      </span>);
     return (
       <div className="container">
         <div className="content">
@@ -71,9 +83,14 @@ class App extends Component {
             </form>
           </div>
           <div className="outputWindow">
-            <button id='button' onClick={this.func}>Get Info  </button>
-            <div className="factDisplay">INFO: {this.state.text}</div>
-            <a id="learnMoreButton" href={link} rel="noopener noreferrer" target="_blank">Learn More About This</a>
+            <button id='factButton' onClick={this.func}>Get Fact'd</button>
+            <div id="factDisplay">{this.state.text}</div>
+            </div>
+            <a style={{visibility:this.state.learnButtonVisible}} id="mainLearnMoreButton" href={link} rel="noopener noreferrer" target="_blank">Learn More About This</a>
+          
+          <div id="historyListTitle"><b>Previous Results</b></div>
+          <div className="theList">
+            {theHistory.reverse()}
           </div>
         </div>
       </div>
